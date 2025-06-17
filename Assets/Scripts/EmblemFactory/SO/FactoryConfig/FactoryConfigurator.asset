@@ -27,3 +27,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ba105b3d70193464bb93e607fac303e1, type: 2}
   - {fileID: 11400000, guid: 2c6f5b9c37b7b65438e45a3f904a93d6, type: 2}
   - {fileID: 11400000, guid: 8fa93d65d0cdb83428850f468ab00493, type: 2}
+  _duplicateTripletCount: 3

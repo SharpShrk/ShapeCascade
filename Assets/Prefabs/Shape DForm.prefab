@@ -291,9 +291,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8748189860107099199}
   - component: {fileID: 4474908394092403781}
-  - component: {fileID: 8604170343862630369}
+  - component: {fileID: 4424920691167258503}
   - component: {fileID: 1187254088217283455}
-  m_Layer: 0
+  - component: {fileID: 4819593575673492763}
+  m_Layer: 3
   m_Name: Shape DForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +310,7 @@ RectTransform:
   m_GameObject: {fileID: 8851095736360307883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8698274339749090405}
@@ -336,9 +337,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -348,10 +349,69 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!68 &8604170343862630369
-EdgeCollider2D:
+--- !u!61 &4424920691167258503
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851095736360307883}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: a15a8edd80639a94f9e76d9280a7f9bf, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.32841492}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2995777, y: 0.65158415}
+  m_EdgeRadius: 0
+--- !u!114 &1187254088217283455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851095736360307883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef28d94ab2afcdd4faaafc2d01060ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSpriteRenderer: {fileID: 2703994596790333782}
+  _animalSpriteRenderer: {fileID: 6040558748383645469}
+--- !u!58 &4819593575673492763
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -383,38 +443,8 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.0017285608, y: 0.6769447}
-  - {x: -0.30030614, y: 0.62743765}
-  - {x: -0.4849444, y: 0.48821422}
-  - {x: -0.6047697, y: 0.32318822}
-  - {x: -0.6721057, y: 0.14602053}
-  - {x: -0.6686381, y: -0.6593289}
-  - {x: 0.6726678, y: -0.6618454}
-  - {x: 0.6712173, y: 0.078016594}
-  - {x: 0.58601946, y: 0.3517387}
-  - {x: 0.44559583, y: 0.5250858}
-  - {x: 0.2647438, y: 0.6386355}
-  - {x: -0.001728561, y: 0.6769447}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1187254088217283455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8851095736360307883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef28d94ab2afcdd4faaafc2d01060ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colorSpriteRenderer: {fileID: 2703994596790333782}
-  _animalSpriteRenderer: {fileID: 6040558748383645469}
+  serializedVersion: 2
+  m_Radius: 0.65
 --- !u!1 &8973605507980154274
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class Emblem : MonoBehaviour
     private ShapeType _shapeType;
     private FrameColor _color;
     private Animal _animal;
+    private BoardManager _boardManager;
 
     public ShapeType ShapeType => _shapeType;
     public FrameColor Color => _color;
@@ -18,13 +19,20 @@ public class Emblem : MonoBehaviour
         FrameColor color,
         Animal animal,
         Sprite colorSprite,
-        Sprite animalSprite)
+        Sprite animalSprite,
+        BoardManager boardManager)
     {
         _shapeType = shapeType;
         _color = color;
         _animal = animal;
+        _boardManager = boardManager;
 
         _colorSpriteRenderer.sprite = colorSprite;
         _animalSpriteRenderer.sprite = animalSprite;
+    }
+
+    private void OnMouseDown()
+    {
+        _boardManager.RemoveEmblem(this);
     }
 }

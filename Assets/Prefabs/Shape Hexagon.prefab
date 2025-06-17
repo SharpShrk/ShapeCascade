@@ -291,9 +291,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6233059881818495629}
   - component: {fileID: 4862232370729817241}
-  - component: {fileID: 3180362359239233100}
   - component: {fileID: -2044984609157739188}
-  m_Layer: 0
+  - component: {fileID: 5004396630263395504}
+  m_Layer: 3
   m_Name: Shape Hexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ RectTransform:
   m_GameObject: {fileID: 6976809618019652336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8915552948613235006}
@@ -336,9 +336,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -348,10 +348,24 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &3180362359239233100
-CircleCollider2D:
+--- !u!114 &-2044984609157739188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976809618019652336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef28d94ab2afcdd4faaafc2d01060ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSpriteRenderer: {fileID: 1123539212659849039}
+  _animalSpriteRenderer: {fileID: 17494601707913589}
+--- !u!60 &5004396630263395504
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -359,7 +373,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 6976809618019652336}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a15a8edd80639a94f9e76d9280a7f9bf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -383,22 +397,24 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.71083397
---- !u!114 &-2044984609157739188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6976809618019652336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef28d94ab2afcdd4faaafc2d01060ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colorSpriteRenderer: {fileID: 1123539212659849039}
-  _animalSpriteRenderer: {fileID: 17494601707913589}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.33340457, y: 0.636383}
+      - {x: -0.6757879, y: -0.014164209}
+      - {x: -0.35554639, y: -0.6474265}
+      - {x: 0.34028777, y: -0.64742637}
+      - {x: 0.6681585, y: 0.013454348}
+      - {x: 0.33750045, y: 0.6448631}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7756979404111453895
 GameObject:
   m_ObjectHideFlags: 0

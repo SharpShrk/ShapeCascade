@@ -291,9 +291,9 @@ GameObject:
   m_Component:
   - component: {fileID: 930295584951006700}
   - component: {fileID: 8426784846167988687}
-  - component: {fileID: 7982234847253967212}
   - component: {fileID: 5131748281508773185}
-  m_Layer: 0
+  - component: {fileID: 8591862180312312048}
+  m_Layer: 3
   m_Name: Shape Rectangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ RectTransform:
   m_GameObject: {fileID: 4297381485428809738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2691510651507029307}
@@ -336,9 +336,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -348,10 +348,24 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &7982234847253967212
-BoxCollider2D:
+--- !u!114 &5131748281508773185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297381485428809738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef28d94ab2afcdd4faaafc2d01060ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSpriteRenderer: {fileID: 7213515047671555145}
+  _animalSpriteRenderer: {fileID: 3347202040861293355}
+--- !u!60 &8591862180312312048
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -392,23 +406,21 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.35, y: 1.35}
-  m_EdgeRadius: 0
---- !u!114 &5131748281508773185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4297381485428809738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef28d94ab2afcdd4faaafc2d01060ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colorSpriteRenderer: {fileID: 7213515047671555145}
-  _animalSpriteRenderer: {fileID: 3347202040861293355}
+  m_Points:
+    m_Paths:
+    - - {x: 0.56671816, y: 0.5505219}
+      - {x: 0.3645325, y: 0.6461486}
+      - {x: -0.3989935, y: 0.6418112}
+      - {x: -0.55220896, y: 0.54258734}
+      - {x: -0.6307917, y: 0.3851166}
+      - {x: -0.63964176, y: -0.36744693}
+      - {x: -0.5641108, y: -0.5519257}
+      - {x: -0.37047675, y: -0.6491242}
+      - {x: 0.36436337, y: -0.6497153}
+      - {x: 0.541236, y: -0.55787665}
+      - {x: 0.6480576, y: -0.359493}
+      - {x: 0.6466436, y: 0.37279886}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6125493764579093304
 GameObject:
   m_ObjectHideFlags: 0
