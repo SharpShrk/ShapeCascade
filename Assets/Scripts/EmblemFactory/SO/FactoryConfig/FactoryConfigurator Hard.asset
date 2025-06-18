@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46a4bb4b4e0c6b74e94856ef68fa2ef4, type: 3}
-  m_Name: FactoryConfigurator
+  m_Name: FactoryConfigurator Hard
   m_EditorClassIdentifier: 
   _shapeConfigs:
   - {fileID: 11400000, guid: 53811829170ad5a4aa4700e179fd5733, type: 2}
-  - {fileID: 11400000, guid: bcb51c20a4a22394a86e362791590a9b, type: 2}
   - {fileID: 11400000, guid: f50722d805505b642b71346756d939f2, type: 2}
   - {fileID: 11400000, guid: 8f5b06c2341a3ee4d9887c7c3fa3b5ac, type: 2}
+  - {fileID: 11400000, guid: bcb51c20a4a22394a86e362791590a9b, type: 2}
   _colorConfigs:
   - {fileID: 11400000, guid: 58939e0b9cf818545998c4db3c93d34b, type: 2}
   - {fileID: 11400000, guid: b8145e05c0ffa2b449a7ffb8394b168d, type: 2}
-  - {fileID: 11400000, guid: ede4b54fafb14fe4c8e94a9a6457f3df, type: 2}
   - {fileID: 11400000, guid: 5312df18cef7cbd47a75f0a1b297d2a5, type: 2}
+  - {fileID: 11400000, guid: ede4b54fafb14fe4c8e94a9a6457f3df, type: 2}
   _animalConfigs:
   - {fileID: 11400000, guid: 22da0ab49e3afa140a0d0659ca39f6c9, type: 2}
   - {fileID: 11400000, guid: ba105b3d70193464bb93e607fac303e1, type: 2}

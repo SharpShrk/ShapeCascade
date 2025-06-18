@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class EmblemFactory : MonoBehaviour
 {
-    [SerializeField] private EmblemFactoryConfigurator _configurator;
     [SerializeField] private BoardManager _boardManager;
+    [SerializeField] private Score _score;
 
     private const int EmblemsPerFrame = 10;
 
     private readonly List<Emblem> _emblems = new List<Emblem>();
 
+    private EmblemFactoryConfigurator _configurator;
+
     public event Action<List<Emblem>> OnInitializationCompleted;
 
-    private async void Awake()
+    public async void Init(EmblemFactoryConfigurator config)
     {
+        _configurator = config;
         await InitializeEmblemsAsync();
         ShuffleEmblems();
     }
@@ -24,9 +27,9 @@ public class EmblemFactory : MonoBehaviour
     {
         int createdCount = 0;
 
-        foreach (var shapeConfig in _configurator.ShapeConfigs)
         {
             foreach (var colorConfig in _configurator.ColorConfigs)
+        foreach (var shapeConfig in _configurator.ShapeConfigs)
             {
                 foreach (var animalConfig in _configurator.AnimalConfigs)
                 {
@@ -67,6 +70,8 @@ public class EmblemFactory : MonoBehaviour
     private void ShuffleEmblems()
     {
         int n = _emblems.Count;
+        _score.SetScore(n);
+
         for (int i = n - 1; i > 0; i--)
         {
             int j = UnityEngine.Random.Range(0, i + 1);

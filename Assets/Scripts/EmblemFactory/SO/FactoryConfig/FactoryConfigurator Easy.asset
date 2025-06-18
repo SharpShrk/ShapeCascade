@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a4bb4b4e0c6b74e94856ef68fa2ef4, type: 3}
+  m_Name: FactoryConfigurator Easy
+  m_EditorClassIdentifier: 
+  _shapeConfigs:
+  - {fileID: 11400000, guid: 53811829170ad5a4aa4700e179fd5733, type: 2}
+  - {fileID: 11400000, guid: f50722d805505b642b71346756d939f2, type: 2}
+  - {fileID: 11400000, guid: 8f5b06c2341a3ee4d9887c7c3fa3b5ac, type: 2}
+  _colorConfigs:
+  - {fileID: 11400000, guid: 58939e0b9cf818545998c4db3c93d34b, type: 2}
+  - {fileID: 11400000, guid: b8145e05c0ffa2b449a7ffb8394b168d, type: 2}
+  - {fileID: 11400000, guid: 5312df18cef7cbd47a75f0a1b297d2a5, type: 2}
+  _animalConfigs:
+  - {fileID: 11400000, guid: 22da0ab49e3afa140a0d0659ca39f6c9, type: 2}
+  - {fileID: 11400000, guid: ba105b3d70193464bb93e607fac303e1, type: 2}
+  - {fileID: 11400000, guid: 2c6f5b9c37b7b65438e45a3f904a93d6, type: 2}
+  _duplicateTripletCount: 6

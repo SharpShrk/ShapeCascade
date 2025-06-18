@@ -1,6 +1,10 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
@@ -11,18 +15,21 @@ public class BoardManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private EmblemFactory _emblemFactory;
+    [SerializeField] private EmblemBar _emblemBar;
+    [SerializeField] private Score _score;
     [SerializeField] private GameObject[] _spawnPoints;
     [SerializeField] private LayerMask _emblemLayer;
     [SerializeField] private BoxCollider2D _checkArea;
     [SerializeField] private float _spawnInterval = 0.5f;
     [SerializeField] private float _velocityThreshold = 0.1f;
+    [SerializeField] private Button _shuffleButton;
 
     private readonly List<Emblem> _availableEmblems = new List<Emblem>();
     private readonly List<Emblem> _spawnedEmblems = new List<Emblem>();
     private readonly List<GameObject> _availableSpawnPoints = new List<GameObject>();
 
+    private CancellationTokenSource _cts = new CancellationTokenSource();
     private GameObject _lastSpawnPoint;
-    private UniTask _spawningTask;
     private bool _isSpawning = true;
     private bool _isInitialFill;
     private bool _isTaskRunning;
@@ -35,18 +42,50 @@ public class BoardManager : MonoBehaviour
     private void OnEnable()
     {
         _emblemFactory.OnInitializationCompleted += InitializeEmblems;
+        _shuffleButton.onClick.AddListener(OnShuffleButtonClick);
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnDisable()
     {
         _emblemFactory.OnInitializationCompleted -= InitializeEmblems;
+        _shuffleButton.onClick.RemoveListener(OnShuffleButtonClick);
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+
+    private void OnDestroy()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        _cts.Cancel();
+    }
+
+    public void RemoveEmblem(Emblem emblem)
+    {
+        if (_spawnedEmblems.Contains(emblem) && !_isInitialFill)
+        {
+            _spawnedEmblems.Remove(emblem);
+            _isInitialFill = false;
+            _emblemBar.AddToken(emblem);
+            _score.SetScore(_availableEmblems.Count + _spawnedEmblems.Count + _emblemBar.CountEmblem);
+
+            if (!_isSpawning && !IsBoardFull() && _availableEmblems.Count > 0)
+            {
+                _isSpawning = true;
+                StartSpawningAsync(_cts.Token).Forget();
+            }
+        }
     }
 
     private async void InitializeEmblems(List<Emblem> emblems)
     {
         _availableEmblems.AddRange(emblems);
         _isInitialFill = true;
-        await StartSpawningAsync();
+        await StartSpawningAsync(_cts.Token);
     }
 
     private void InitializeSpawnPoints()
@@ -60,7 +99,7 @@ public class BoardManager : MonoBehaviour
         _availableSpawnPoints.AddRange(_spawnPoints);
     }
 
-    private async UniTask StartSpawningAsync()
+    private async UniTask StartSpawningAsync(CancellationToken cancellationToken)
     {
         if (_isTaskRunning)
         {
@@ -68,9 +107,10 @@ public class BoardManager : MonoBehaviour
         }
 
         _isTaskRunning = true;
+
         try
         {
-            while (_isSpawning && _availableEmblems.Count > 0)
+            while (_isSpawning && _availableEmblems.Count > 0 && !cancellationToken.IsCancellationRequested)
             {
                 if (!IsBoardFull())
                 {
@@ -82,13 +122,15 @@ public class BoardManager : MonoBehaviour
                     break;
                 }
 
-                await UniTask.Delay(System.TimeSpan.FromSeconds(_spawnInterval));
+                await UniTask.Delay(
+                    TimeSpan.FromSeconds(_spawnInterval),
+                    ignoreTimeScale: false,
+                    cancellationToken: cancellationToken);
             }
         }
         finally
         {
             _isTaskRunning = false;
-            _spawningTask = UniTask.CompletedTask; // пригодится - но пока не нужна.
         }
     }
 
@@ -106,7 +148,7 @@ public class BoardManager : MonoBehaviour
         GameObject spawnPoint = SelectSpawnPoint();
 
         emblem.transform.position = spawnPoint.transform.position;
-        emblem.transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+        emblem.transform.rotation = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0f, 360f));
         emblem.gameObject.SetActive(true);
         Rigidbody2D rb = emblem.GetComponent<Rigidbody2D>();
 
@@ -132,7 +174,7 @@ public class BoardManager : MonoBehaviour
             tempSpawnPoints.Remove(_lastSpawnPoint);
         }
 
-        GameObject selectedPoint = tempSpawnPoints[Random.Range(0, tempSpawnPoints.Count)];
+        GameObject selectedPoint = tempSpawnPoints[UnityEngine.Random.Range(0, tempSpawnPoints.Count)];
         _lastSpawnPoint = selectedPoint;
         return selectedPoint;
     }
@@ -162,19 +204,60 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
-    public void RemoveEmblem(Emblem emblem)
+    private async void OnShuffleButtonClick()
     {
-        if (_spawnedEmblems.Contains(emblem))
-        {
-            _spawnedEmblems.Remove(emblem);
-            _availableEmblems.Insert(0, emblem);
-            emblem.gameObject.SetActive(false);
+        if (!_isInitialFill)
+            await ClearBoardAndRestartAsync();
+    }
 
-            if (!_isSpawning && !IsBoardFull() && _availableEmblems.Count > 0)
-            {
-                _isSpawning = true;
-                StartSpawningAsync().Forget();
-            }
+    private async UniTask ClearBoardAndRestartAsync()
+    {
+        _isSpawning = false;
+        _cts.Cancel();
+
+        await UniTask.WaitWhile(() => _isTaskRunning);
+
+        foreach (var emblem in _spawnedEmblems)
+        {
+            emblem.gameObject.SetActive(false);
+            Rigidbody2D rb = emblem.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+                rb.bodyType = RigidbodyType2D.Kinematic;
+
+            _availableEmblems.Add(emblem);
+        }
+
+        _spawnedEmblems.Clear();
+
+        ShuffleEmblems();
+
+        _isInitialFill = true;
+        _isSpawning = true;
+
+        ResetCancellationToken();
+
+        await StartSpawningAsync(_cts.Token);
+    }
+
+    private void ResetCancellationToken()
+    {
+        if (_cts != null)
+        {
+            _cts.Dispose();
+        }
+
+        _cts = new CancellationTokenSource();
+    }
+
+    private void ShuffleEmblems()
+    {
+        int count = _availableEmblems.Count;
+
+        for (int i = count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            (_availableEmblems[i], _availableEmblems[j]) = (_availableEmblems[j], _availableEmblems[i]);
         }
     }
 }

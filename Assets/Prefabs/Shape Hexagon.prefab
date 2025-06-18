@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6962005613058212204}
   - component: {fileID: 889353346335990209}
   - component: {fileID: 17494601707913589}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Animal Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8915552948613235006}
   - component: {fileID: 106768409262382199}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 3770278572549859451}
   - component: {fileID: 152157530152743144}
   - component: {fileID: 1123539212659849039}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Color Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 4862232370729817241}
   - component: {fileID: -2044984609157739188}
   - component: {fileID: 5004396630263395504}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Shape Hexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 5464780734005849765}
   - component: {fileID: 6931894420661092440}
   - component: {fileID: 5316461920768976489}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shape Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

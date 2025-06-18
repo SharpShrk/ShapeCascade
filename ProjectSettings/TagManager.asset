@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Emblem
+  - 
   - Water
   - UI
-  - 
-  - 
+  - Emblem
+  - Board
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Animal
     uniqueID: 214857051
+    locked: 0
+  - name: UI
+    uniqueID: 3067861101
     locked: 0
