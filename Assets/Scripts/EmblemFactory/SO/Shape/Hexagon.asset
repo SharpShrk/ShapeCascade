@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3090dbd7a93ea4dbd537c5ad0bcf5b, type: 3}
+  m_Name: Hexagon
+  m_EditorClassIdentifier: 
+  _shapeType: 2
+  _shapePrefab: {fileID: 6976809618019652336, guid: 181a4a91d816bba4ba1b5f5f452d9064, type: 3}
